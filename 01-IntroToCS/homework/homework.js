@@ -23,24 +23,20 @@ function BinarioADecimal(num) {
 }
 
 function DecimalABinario(num) {
-   let div;
    let binario = [];
-   let bin = "0";
 
    while (num !== 0) {
-
-      div = num / 2;
-      binario.push(num % 2);
+      let div = num / 2;
+      binario.unshift(num % 2);
       num = Math.trunc(div);
    }
 
    if (binario.length == 0) {
-      return bin;
+      return "0"
    } else {
-      bin = binario.reverse().join('');
-      return bin;
+      return binario.join('');
    }
-}
+} 
 
 module.exports = {
    BinarioADecimal,
