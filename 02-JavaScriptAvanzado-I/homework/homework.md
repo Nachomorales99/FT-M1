@@ -35,10 +35,10 @@ console.log(bar); // Undifined
 console.log(baz); // Error
 foo();
 function foo() {
-   console.log('Hola!'); // Hola!
+   console.log('Hola!'); // Hola!, pero no se va a ejecutar
 }
 var bar = 1;
-baz = 2;
+baz = 2; // Va a dar error por no estar bien definida la variable
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 ```
@@ -94,7 +94,7 @@ console.log(pm); //Franco
 "4" - 2 // 2
 "4px" - 2 // NaN
 7 / 0 // Infinity
-{}[0] // [0]
+{}[0] // [0] en Chrome --- Undefined en VS, porque no lo toma como objeto
 parseInt("09") // 9
 5 && 2 // 2
 2 && 5 // 5
@@ -102,7 +102,7 @@ parseInt("09") // 9
 0 || 5 // 5
 [3]+[3]-[10] // "33" - [10] = 23
 3>2>1 // False
-[] == ![] // True   [] == [] = False
+[] == ![] // True  [] == falsy, [] == 0 > false, "" == 0, 0 == 0
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -113,8 +113,8 @@ parseInt("09") // 9
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a); // Undefined, porque la variable esta definida en la face de ejecucion
+   console.log(foo()); // 2, invoca la funcion foo() que devuelve 2
 
    var a = 1;
    function foo() {
@@ -138,7 +138,7 @@ function getFood(food) {
    return snack;
 }
 
-getFood(false);
+getFood(false); // Unidefined,dentro del contexto existe la variable, pero no tiene definicion, con let si sale "Meow Mix"
 ```
 
 ### This
@@ -157,11 +157,11 @@ var obj = {
    },
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); // Aurelio de Rosa, porque el this esta apuntando al nombre del objeto prop 
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test()); // Juan Perez, en el navegador porque el this hace referencia a la variable globlal --- En VS apunta al global, pero devuelve Undefined
 ```
 
 ### Event loop
@@ -170,14 +170,14 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
+   console.log(1); // 1°
    setTimeout(function () {
-      console.log(2);
+      console.log(2); // 4°
    }, 1000);
    setTimeout(function () {
-      console.log(3);
+      console.log(3); // 3°
    }, 0);
-   console.log(4);
+   console.log(4); // 2°
 }
 
 printing();
