@@ -16,11 +16,9 @@ otroContador()      // 1
 otroContador()      // 2 */
 
 function counter() {
-
-  let count = 0;
-
+  let count = 1;
   return function () {
-    return (count += 1);
+    return (count++);
   }
 }
 
@@ -43,10 +41,10 @@ otra vez cálculos que ya se hicieron anteriormente.
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) */
 
 function cacheFunction(cb) {
-
   let cache = {};
+
   return function (arg) {
-    if (cache.hasOwnProperty(arg)) {
+    if (cache.hasOwnProperty(arg)) { // hasOwnProperty devuelve true o false si es una prop existe en el objeto
       return cache[arg];
     } else {
       cache[arg] = cb(arg);
@@ -54,6 +52,23 @@ function cacheFunction(cb) {
     }
   };
 }
+
+// Optimizado 
+/*
+function cacheFunction(cb) {
+  let cache = {};
+
+  return function (arg) {
+    if (!cache.hasOwnProperty(arg)) {
+      cache[arg] = cb(arg);
+      return cache[arg];
+    }
+    return cache[arg];
+  }
+} 
+*/
+
+// Con [] puedo pasar los argumentos recibidos en la funcion y ellos se encargan de pasarlo a string
 
 //----------------------------------------
 
@@ -70,7 +85,7 @@ var alumno = {
 };
 
 function getNombre() {
-  return this.nombre;
+  return this.nombre; // Este "this" apunta al contexto global
 }
 
 /*
@@ -79,9 +94,9 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor = getNombre.bind(instructor);
+let getNombreInstructor = getNombre.bind(instructor); // Aca redireccionamos en "this" al objeto instructor
 
-let getNombreAlumno = getNombre.bind(alumno);
+let getNombreAlumno = getNombre.bind(alumno); // Aca redireccionamos en "this" al objeto alumno
 
 /*
   Ejercicio 4
@@ -92,7 +107,7 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind(this, "*", "*");
+let textoAsteriscos = crearCadena.bind(this, "*", "*"); //Importa el orden de los argumentos, "this" o "null" deja fijo los argumentos que le pasamos
 let textoGuiones = crearCadena.bind(this, "-", "-");
 let textoUnderscore = crearCadena.bind(this, "_", "_");
 
