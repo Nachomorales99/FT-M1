@@ -20,11 +20,41 @@ function nFactorial(n) {
   return n * nFactorial(n - 1);
 }
 
+/* Factorial Iterativo 
+
+function factorialIter(n) {
+  if(n === 0) return 1;
+
+  for (let i = n - 1; i >= 1; i--) {
+    n = n * i
+  }
+  return n;
+} 
+*/
+
 function nFibonacci(n) {
   if (n == 1) return 1;
   if (n <= 0) return 0;
   return nFibonacci(n - 1) + nFibonacci(n - 2)
 }
+
+/* Fibonacci Iterativo
+
+function fibonacciIter(n){
+  let a = 1;
+  let b = 0; 
+
+  for(let i = 0; i < n; i++){
+    let c = a + b;
+
+    a = b; 
+    b = c;
+  } 
+  return b;
+} 
+
+fibonacciIter(7); // 13 
+*/
 
 /* 
 n = posicion  
@@ -58,18 +88,15 @@ Pueden utilizar class o función constructora.
 
 function Queue() {
   this.array = [];
-}
-{
+} {
   Queue.prototype.enqueue = function (elemento) {
     this.array.push(elemento);
   }
-}
-{
+} {
   Queue.prototype.dequeue = function () {
     return this.array.shift();
   }
-}
-{
+} {
   Queue.prototype.size = function () {
     return this.array.length;
   }

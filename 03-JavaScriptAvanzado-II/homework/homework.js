@@ -18,7 +18,7 @@ otroContador()      // 2 */
 function counter() {
   let count = 1;
   return function () {
-    return (count++);
+    return count++;
   }
 }
 
@@ -40,21 +40,20 @@ otra vez cálculos que ya se hicieron anteriormente.
   squareCache(5)    // invocará a square(5), almacenará el resultado y lo retornará
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) */
 
-function cacheFunction(cb) {
-  let cache = {};
+function cacheFunction(cb) { // La funcion recibe una funcion
+  let cache = {}; // Creamos el Cache 0 Memoria
 
-  return function (arg) {
+  return function (arg) { // Retornamos una funcion que recio un argumento
     if (cache.hasOwnProperty(arg)) { // hasOwnProperty devuelve true o false si es una prop existe en el objeto
-      return cache[arg];
-    } else {
-      cache[arg] = cb(arg);
-      return cache[arg];
+      return cache[arg]; // Si el argumento ya se envio antes, devuelve el resultado de la memeoria
+    } else { // Si no existia
+      cache[arg] = cb(arg); // Se guarda el nuevo resultado en la memoria
+      return cache[arg]; // Se retorna el nuevo resultado
     }
   };
 }
 
 // Optimizado 
-/*
 function cacheFunction(cb) {
   let cache = {};
 
@@ -65,8 +64,7 @@ function cacheFunction(cb) {
     }
     return cache[arg];
   }
-} 
-*/
+}
 
 // Con [] puedo pasar los argumentos recibidos en la funcion y ellos se encargan de pasarlo a string
 
