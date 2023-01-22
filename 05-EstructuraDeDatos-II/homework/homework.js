@@ -66,14 +66,7 @@ LinkedList.prototype.search = function (wow) {
 
   if(!varRef) return null; // Lista vacia - Retorna Null
 
-  while (varRef.next.next) { // Buscamos el ultimo Nodo recorriendo Nodo x Nodo hasta llegar a Null
-    varRef = varRef.next; // Asignamos el Nodo siguiente si .next no es Null
-  } 
-
-    retornar = varRef.next; // Asignamos el ultimo Nodo a la variable 
-    varRef.next = null; // Borramos la ulrima variable
-    this._length--; // Quitamos 1 al contador de la lista
-    return retornar.value; // Devolvemos el valor de lo que borramos value: "Valor"
+  
 
   /* 
   search: recibe un parámetro y lo busca dentro de la lista, con una particularidad: el parámetro puede ser un valor o un callback. En el primer caso, buscamos un nodo cuyo valor coincida con lo buscado; en el segundo, buscamos un nodo cuyo valor, al ser pasado como parámetro del callback, retorne true. 
@@ -98,7 +91,12 @@ La clase debe tener los siguientes métodos:
 
 Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero puedo chequear, con hasKey, si ya hay algo en la tabla con el nombre 'instructora'; luego, invocando set('instructora', 'Ani'), se almacenará el par clave-valor en un bucket específico (determinado al hashear la clave)
 */
-function HashTable() {}
+function HashTable() {} 
+
+HashTable.prototype.hash = function () {}
+HashTable.prototype.set = function (obj) {}
+HashTable.prototype.get = function (key) {}
+HashTable.prototype.hashKey = function (key) {}
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
