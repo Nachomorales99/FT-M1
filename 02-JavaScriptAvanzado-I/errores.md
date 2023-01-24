@@ -113,9 +113,9 @@ Noten, que cuando hacemos esto no ejecutamos un `throw`, ya que esperamos que al
 
 | __Función__   | __Tipo de función__| __Ejemplo de error__  | __Tipo de error__ | __Qué usa__ | __Como lo manejamos__|
 |--------   | ----:| ----:| ----: | ----: | ----: |
-|`fs.stat`| asincrónico | archivo no encontrado | genuino| callback | manejamos el error del callback |
+|`fs.stat`  | asincrónico | archivo no encontrado | genuino| callback | manejamos el error del callback |
 |`JSON.parse`| sincrónico | input incorrecto | genuino| `throw` | `try / catch` |
-|`fs.stat`| asincrónico | `null` como input | programación| `throw` | arreglamos el bug |
+|`fs.stat`  | asincrónico | `null` como input | programación| `throw` | arreglamos el bug |
 
 > `fs.stat` devuelve datos sobre un archivo en particular, está en la librería core `fs`.
 
