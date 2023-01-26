@@ -74,11 +74,30 @@ BinarySearchTree.prototype.contains = function (finder) {
   if (this.value === finder) return true;
 
   // ¿TENGO ALGO A LA IZQUIERDA Y VALOR ESTA A LA IZQUIERDA?
-  if (this.left && this.left.contains(finder)) return true;
+  if (finder < this.value && this.left && this.left.contains(finder)) return true;
 
   // ¿TENGO ALGO A LA DERECHA Y VALOR ESTA A LA DERECHAA?
-  if (this.right && this.right.contains(finder)) return true;
+  if (finder > this.value && this.right && this.right.contains(finder)) return true;
 
+  return false;
+}; 
+
+BinarySearchTree.prototype.contains = function (value) {
+  let current = this;
+
+  if (value === current.value) {
+    return true;
+  }
+
+  if (value < current.value && current.left) {
+    current = current.left;
+    return current.contains(value);
+  }
+
+  if (value > current.value && current.right) {
+    current = current.right;
+    return current.contains(value);
+  }
   return false;
 };
 
