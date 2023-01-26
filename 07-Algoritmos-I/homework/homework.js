@@ -12,8 +12,7 @@ function factorear(num) {
   for (let i = 2; i <= num; i++) {
     while (num % i == 0) {
       factores.push(i);
-      num = num / i;
-      console.log(num)
+      num/= i;
     }
   }
 
@@ -24,19 +23,23 @@ function bubbleSort(array) {
   // Implementar el método conocido como bubbleSort para ordenar de menor a mayor
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
-  // Tu código: 
-  //ENTENDER EL FUNCIONAMIENTO DE ESTO!!!!
+  // Tu código:
+
+  // Ordenamiento:
+  // Iteramos comparando i vs i+1
+  // Si debo ordenarlos, los cambio de posicion, y avanzo la i
 
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length - i - 1; j++) {
       if (array[j] > array[j + 1]) {
-        let aux = array[j];
-        array[j] = array[j + 1];
+        // Hago el cambio
+        let aux = array[j]; // 5
+        array[j] = array[j + 1]; // 5 > 2
         array[j + 1] = aux;
       }
     }
   }
-  return array;
+  return array; // Ordenado
 };
 
 function insertionSort(array) {
@@ -46,15 +49,17 @@ function insertionSort(array) {
   // Tu código:
 
   for (let i = 1; i < array.length; i++) {
+    // i Comienza en 1 porque la posicion 0 la asumo como ordenada
     let aux = array[i];
     let j = i - 1;
     while (j >= 0 && array[j] > aux) {
+      // Ciclo while para encontrar la posicion
       array[j + 1] = array[j];
       j--;
     }
-    array[j + 1] = aux;
+    array[j + 1] = aux; // Inserto el elemento
   }
-  return array;
+  return array; // Ordenado
 }
 
 function selectionSort(array) {
@@ -64,13 +69,14 @@ function selectionSort(array) {
   // Tu código:
 
   for (let i = 0; i < array.length; i++) {
-    let min = i;
+    let min = i; // Me guardo LA POSICION DONDE SE ENCUENTRA el minimo
     for (let j = i + 1; j < array.length; j++) {
       if (array[min] > array[j]) {
         min = j;
       }
     }
 
+    // Cambiar las posiciones con el minimo
     let aux = array[i];
     array[i] = array[min];
     array[min] = aux;
